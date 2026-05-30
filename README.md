@@ -15,6 +15,12 @@ USB 하나 꽂고 부팅하면 끝 — 설치도, 키보드 추가 설정도 없
 
 ---
 
+# 🎬 실제 작동 영상
+
+![COSMIC 터미널·런처·에디터 한글 입력 데모](demo/cosmic-korean-demo.gif)
+
+---
+
 # ✅ 무엇이 되나요
 
 | | 기능 |
@@ -23,14 +29,6 @@ USB 하나 꽂고 부팅하면 끝 — 설치도, 키보드 추가 설정도 없
 | **한글 화면(UI)** | 메뉴 · 버튼 · 날짜 전부 한국어 (ko_KR.UTF-8) |
 | **한영 전환키 5종** | 윈도우 · 맥 사용자 모두 평소 쓰던 키 그대로 |
 | **설치 불필요** | USB 부팅만. Ventoy persistence 로 설정 영구 저장 |
-
----
-
-# 🎬 실제 작동 영상
-
-<video src="https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4" controls width="720"></video>
-
-▶️ [영상이 안 보이면 여기서 재생/다운로드](https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4) — COSMIC 터미널·런처·에디터에서 한글이 실제로 입력되는 화면.
 
 ---
 
@@ -143,8 +141,24 @@ sudo bash build-hotkeys.sh     # 한영키 5종 + autostart 견고화
 - 한국어 로케일 `ko_KR.UTF-8` + 언어팩
 - 부팅 자동시작 (systemd user service + autostart)
 
+### 터미널·런처 한글 — COSMIC 컴포넌트 소스 재빌드
+
+COSMIC 은 오픈소스라 구성요소를 직접 고쳐 빌드할 수 있습니다. 기본 터미널·런처의 한글은 이렇게 살렸습니다:
+
+```bash
+# cosmic-term · cosmic-launcher 를 소스에서 재빌드 (IME 포함된 최신 소스)
+for r in libcosmic cosmic-term cosmic-launcher; do
+  git clone --depth 1 https://github.com/pop-os/$r.git
+done
+( cd cosmic-term     && cargo build --release )   # → target/release/cosmic-term
+( cd cosmic-launcher && cargo build --release )   # → target/release/cosmic-launcher
+# 빌드된 바이너리를 ISO rootfs 의 /usr/bin/ 에 교체 → mksquashfs 로 재패키징
+```
+
+> 검증: 터미널 입력이 바이트 `안녕`(UTF-8 `ec95 88 eb 85 95`), 런처 검색창도 `안녕` 조합.
+
 ---
 
 # 📜 License
 
-[Apache-2.0](LICENSE) — 자유롭게 포크 · 개조하세요.
+[Apache-2.0](LICENSE) — 소스 수정·빌드 방법까지 전부 공개돼 있습니다. **마음껏 고쳐서 쓰시기 바랍니다.**

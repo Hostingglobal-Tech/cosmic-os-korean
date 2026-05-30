@@ -14,6 +14,12 @@ A live Pop!_OS 24.04 **COSMIC (Wayland)** where Korean types **out of the box** 
 
 ---
 
+# 🎬 Demo
+
+![Korean input in COSMIC terminal, launcher, editor](demo/cosmic-korean-demo.gif)
+
+---
+
 # ✅ What works
 
 | | Feature |
@@ -22,14 +28,6 @@ A live Pop!_OS 24.04 **COSMIC (Wayland)** where Korean types **out of the box** 
 | **Korean UI** | Menus · buttons · dates all in Korean (ko_KR.UTF-8) |
 | **5 toggle keys** | Both Windows and Mac users get the keys they already know |
 | **No install** | Boot from USB only. Ventoy persistence keeps your settings |
-
----
-
-# 🎬 Demo
-
-<video src="https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4" controls width="720"></video>
-
-▶️ [Play / download if the video doesn't show](https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4) — Korean being typed live in COSMIC's terminal, launcher, and editor.
 
 ---
 
@@ -141,8 +139,24 @@ Key changes:
 - Korean locale `ko_KR.UTF-8` + language packs
 - Autostart on boot (systemd user service + XDG autostart)
 
+### Terminal & launcher — rebuild COSMIC components from source
+
+COSMIC is open source, so its components can be patched and rebuilt. This is how terminal/launcher Korean was fixed:
+
+```bash
+# Rebuild cosmic-term & cosmic-launcher from source (IME-complete)
+for r in libcosmic cosmic-term cosmic-launcher; do
+  git clone --depth 1 https://github.com/pop-os/$r.git
+done
+( cd cosmic-term     && cargo build --release )   # → target/release/cosmic-term
+( cd cosmic-launcher && cargo build --release )   # → target/release/cosmic-launcher
+# Drop the binaries into the ISO rootfs /usr/bin/ and repackage with mksquashfs
+```
+
+> Verified: terminal input lands as bytes `안녕` (UTF-8 `ec95 88 eb 85 95`); launcher search box composes `안녕` too.
+
 ---
 
 # 📜 License
 
-[Apache-2.0](LICENSE) — fork and customize freely.
+[Apache-2.0](LICENSE) — the full source and build steps are open. **Modify and use it freely.**
