@@ -25,6 +25,19 @@
 
 ---
 
+# 📥 다운로드
+
+**[→ Releases 에서 ISO 받기](https://github.com/Hostingglobal-Tech/cosmic-os-korean/releases/latest)**
+
+GitHub 2GB 한도 때문에 ISO(3.4GB)를 2개로 나눠 올렸습니다. **둘 다 받아서 하나로 합치세요:**
+
+- **Windows**: `copy /b cosmic-os-korean.iso.part00 + cosmic-os-korean.iso.part01 cosmic-os-korean.iso`
+- **Linux/macOS**: `cat cosmic-os-korean.iso.part0* > cosmic-os-korean.iso`
+
+무결성 확인(SHA-256): `3c57f60f515d156f06c5756137b450e38ddd9176b21fcfdda0abe8100884cb5b`
+
+---
+
 # 🤔 왜 만들었나
 
 리눅스 한글 입력은 **배포판·데스크탑·입력기 버전마다 제각각**이라 개발자도 헤맵니다. 특히 **Pop!_OS 24.04 의 새 데스크탑 COSMIC** 은 Wayland 기반 신생이라, 기본 상태로는 한글이 **안 됩니다.**

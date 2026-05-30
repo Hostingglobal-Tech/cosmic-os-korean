@@ -25,6 +25,19 @@
 
 ---
 
+# 📥 Download
+
+**[→ Get the ISO from Releases](https://github.com/Hostingglobal-Tech/cosmic-os-korean/releases/latest)**
+
+The 3.4GB ISO is split in two (GitHub's 2GB limit). **Download both parts and join them:**
+
+- **Windows**: `copy /b cosmic-os-korean.iso.part00 + cosmic-os-korean.iso.part01 cosmic-os-korean.iso`
+- **Linux/macOS**: `cat cosmic-os-korean.iso.part0* > cosmic-os-korean.iso`
+
+Verify (SHA-256): `3c57f60f515d156f06c5756137b450e38ddd9176b21fcfdda0abe8100884cb5b`
+
+---
+
 # 🤔 Why this exists
 
 Korean input on Linux is notoriously inconsistent — it varies by distro, desktop, and input-method version. **Pop!_OS 24.04’s new COSMIC desktop** is a young Wayland compositor, so Korean **does not work out of the box.**
