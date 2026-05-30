@@ -119,6 +119,37 @@ if command -v flatpak >/dev/null 2>&1; then
     --talk-name=org.freedesktop.portal.IBus 2>/dev/null || true
 fi
 
+# ── 9b. GTK immodule 캐시 재빌드 + 시스템 전역 gtk-im-module (COSMIC: gnome-shell 부재로 env 전파 불확실 → 못박음) ──
+apt-get install -y --no-install-recommends libgtk-3-bin >/dev/null 2>&1 || true
+for q in gtk-query-immodules-3.0 /usr/lib/*/libgtk-3-0*/gtk-query-immodules-3.0; do
+  [ -x "$q" ] && "$q" --update-cache 2>/dev/null && { log "gtk3 immodule cache rebuilt ($q)"; break; }
+done
+mkdir -p /etc/gtk-3.0 /etc/gtk-4.0
+printf '[Settings]\ngtk-im-module=ibus\n' >/etc/gtk-3.0/settings.ini
+printf '[Settings]\ngtk-im-module=ibus\n' >/etc/gtk-4.0/settings.ini
+
+# ── 9c. profile.d 로 env export (PAM/environment.d 미전파 세션 대비 다중화) ──
+cat >/etc/profile.d/zz-korean-ime.sh <<'EOF'
+export GTK_IM_MODULE=ibus QT_IM_MODULE=ibus XMODIFIERS=@im=ibus GLFW_IM_MODULE=ibus SDL_IM_MODULE=ibus
+EOF
+chmod 644 /etc/profile.d/zz-korean-ime.sh
+
+# ── 9d. ibus preload-engines=hangul + 세션 시작 시 engine 자동 활성 (gnome-shell 부재 보완) ──
+cat >>/etc/dconf/db/local.d/00-korean <<'EOF'
+
+[desktop/ibus/general]
+preload-engines=['hangul']
+EOF
+dconf update || true
+cat >/etc/xdg/autostart/zz-ibus-engine-hangul.desktop <<'EOF'
+[Desktop Entry]
+Type=Application
+Name=Hangul Engine Activate
+Exec=sh -c "sleep 10; ibus-daemon -drxR; sleep 4; ibus engine hangul"
+X-GNOME-Autostart-enabled=true
+NoDisplay=true
+EOF
+
 # ── 10. snap IDE 경고 (snap 샌드박스 = IME 소켓 차단 = 한글 불가) ──
 if command -v snap >/dev/null 2>&1 && snap list 2>/dev/null | grep -qiE 'intellij|pycharm|code|webstorm'; then
   log "경고: snap IDE 감지 → snap 은 IME 소켓 차단으로 한글 안 됨. tarball/Toolbox 재설치 권장."
