@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Cosmic_OS.png" alt="Cosmic OS" width="720">
+<img src="OS.jpg" alt="Cosmic OS" width="720">
 
 # Cosmic OS · Korean Edition
 
@@ -22,16 +22,6 @@
 | **Korean UI** | Menus · buttons · dates all in Korean (ko_KR.UTF-8) |
 | **5 toggle keys** | Both Windows and Mac users get the keys they already know |
 | **No install** | Boot from USB only. Ventoy persistence keeps your settings |
-
----
-
-# 📸 Proof it actually works
-
-<div align="center">
-<img src="COSMIC_hangul_proof.png" alt="Korean input on COSMIC" width="600">
-</div>
-
-**「안녕하세요 코스믹」** (“Hello COSMIC”) composed in the COSMIC text editor. (Screenshot from a VM verification run.)
 
 ---
 

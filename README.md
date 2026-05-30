@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="Cosmic_OS.png" alt="Cosmic OS" width="720">
+<img src="OS.jpg" alt="Cosmic OS" width="720">
 
 # Cosmic OS · 한글판
 
@@ -22,16 +22,6 @@
 | **한글 화면(UI)** | 메뉴 · 버튼 · 날짜 전부 한국어 (ko_KR.UTF-8) |
 | **한영 전환키 5종** | 윈도우 · 맥 사용자 모두 평소 쓰던 키 그대로 |
 | **설치 불필요** | USB 부팅만. Ventoy persistence 로 설정 영구 저장 |
-
----
-
-# 📸 진짜 되는 증거
-
-<div align="center">
-<img src="COSMIC_hangul_proof.png" alt="COSMIC 한글 입력 증거" width="600">
-</div>
-
-COSMIC 텍스트 편집기에 **「안녕하세요 코스믹」** 조합 입력 성공. (사진은 가상머신 검증 화면)
 
 ---
 
