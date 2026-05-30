@@ -4,9 +4,10 @@
 
 # Cosmic OS · 한글판
 
-### Pop!_OS 24.04 **COSMIC (Wayland)** 에서 한글 입력과 한글 화면이 **바로** 되는 라이브 OS
+### "COSMIC 에선 한글 안 된다" 길래 — **OS 소스코드를 직접 뜯어고쳐서 되게 만들었습니다.**
 
-**USB 하나 꽂고 부팅하면 끝. 설치도, 키보드 추가 설정도 필요 없습니다.**
+Pop!_OS 24.04 **COSMIC (Wayland)** 의 **터미널·런처·에디터**에서 한글이 **바로** 되는 라이브 OS.
+USB 하나 꽂고 부팅하면 끝 — 설치도, 키보드 추가 설정도 없이.
 
 [🇺🇸 English README →](README.en.md)
 
@@ -18,10 +19,18 @@
 
 | | 기능 |
 |---|---|
-| **한글 입력** | COSMIC(Wayland) 텍스트 편집기·터미널·앱에서 한글 타이핑 (fcitx5 5.1.12) |
+| **한글 입력** | **에디터 · 터미널 · 런처 · 앱** 전부 한글 (fcitx5 5.1.12 + cosmic-term·런처 소스 재빌드) |
 | **한글 화면(UI)** | 메뉴 · 버튼 · 날짜 전부 한국어 (ko_KR.UTF-8) |
 | **한영 전환키 5종** | 윈도우 · 맥 사용자 모두 평소 쓰던 키 그대로 |
 | **설치 불필요** | USB 부팅만. Ventoy persistence 로 설정 영구 저장 |
+
+---
+
+# 🎬 실제 작동 영상
+
+<video src="https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4" controls width="720"></video>
+
+▶️ [영상이 안 보이면 여기서 재생/다운로드](https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4) — COSMIC 터미널·런처·에디터에서 한글이 실제로 입력되는 화면.
 
 ---
 
@@ -34,7 +43,7 @@ GitHub 2GB 한도 때문에 ISO(3.4GB)를 2개로 나눠 올렸습니다. **둘 
 - **Windows**: `copy /b cosmic-os-korean.iso.part00 + cosmic-os-korean.iso.part01 cosmic-os-korean.iso`
 - **Linux/macOS**: `cat cosmic-os-korean.iso.part0* > cosmic-os-korean.iso`
 
-무결성 확인(SHA-256): `3c57f60f515d156f06c5756137b450e38ddd9176b21fcfdda0abe8100884cb5b`
+무결성 확인(SHA-256): `1e489f413dca37c0e581afac4e9f46509c1ee0c2fd910636800aed2d4c068830`
 
 ---
 
@@ -48,6 +57,12 @@ GitHub 2GB 한도 때문에 ISO(3.4GB)를 2개로 나눠 올렸습니다. **둘 
 
 - ❌ **ibus** — COSMIC 에서 앱에 한글이 전달 안 됨 (입력기 너무 구버전)
 - ✅ **fcitx5 5.1.12** — COSMIC Wayland 의 input-method 에 정상 연결 → **한글 조합 성공**
+
+### 터미널·런처는 한 걸음 더 — 소스를 직접 고쳤습니다
+
+fcitx5 만으로는 **기본 터미널(cosmic-term)·런처**에서 한글이 안 됐습니다. 그 바이너리들이 IME 지원 이전의 구버전이었기 때문입니다. COSMIC 은 오픈소스 — 그래서 **소스를 받아 cosmic-term·cosmic-launcher 를 직접 다시 빌드**해 IME 를 살렸습니다.
+
+검증 결과: 터미널에 입력한 글자가 바이트 단위로 `안녕`(UTF-8 `ec95 88 eb 85 95`), 런처 검색창에도 `안녕` 이 조합됩니다. **"COSMIC 터미널·런처는 한글 안 된다" 는 말, 이제 사실이 아닙니다.**
 
 ---
 

@@ -4,9 +4,9 @@
 
 # Cosmic OS · Korean Edition
 
-### Korean input **and** a Korean UI that work **out of the box** on Pop!_OS 24.04 **COSMIC (Wayland)**
+### They said "Korean can't work on COSMIC." So I **patched the OS's source code** to make it work.
 
-**Plug in one USB, boot, done. No install, no manual keyboard setup.**
+A live Pop!_OS 24.04 **COSMIC (Wayland)** where Korean types **out of the box** in the **terminal, launcher, and editor**. One USB, boot, done — no install, no keyboard setup.
 
 [🇰🇷 한국어 README →](README.md)
 
@@ -18,10 +18,18 @@
 
 | | Feature |
 |---|---|
-| **Korean input** | Type Hangul in COSMIC (Wayland) editors, terminals, apps — via fcitx5 5.1.12 |
+| **Korean input** | Hangul in **editor · terminal · launcher · apps** (fcitx5 5.1.12 + cosmic-term/launcher rebuilt from source) |
 | **Korean UI** | Menus · buttons · dates all in Korean (ko_KR.UTF-8) |
 | **5 toggle keys** | Both Windows and Mac users get the keys they already know |
 | **No install** | Boot from USB only. Ventoy persistence keeps your settings |
+
+---
+
+# 🎬 Demo
+
+<video src="https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4" controls width="720"></video>
+
+▶️ [Play / download if the video doesn't show](https://github.com/Hostingglobal-Tech/cosmic-os-korean/raw/master/demo/cosmic-korean-demo.mp4) — Korean being typed live in COSMIC's terminal, launcher, and editor.
 
 ---
 
@@ -34,7 +42,7 @@ The 3.4GB ISO is split in two (GitHub's 2GB limit). **Download both parts and jo
 - **Windows**: `copy /b cosmic-os-korean.iso.part00 + cosmic-os-korean.iso.part01 cosmic-os-korean.iso`
 - **Linux/macOS**: `cat cosmic-os-korean.iso.part0* > cosmic-os-korean.iso`
 
-Verify (SHA-256): `3c57f60f515d156f06c5756137b450e38ddd9176b21fcfdda0abe8100884cb5b`
+Verify (SHA-256): `1e489f413dca37c0e581afac4e9f46509c1ee0c2fd910636800aed2d4c068830`
 
 ---
 
@@ -48,6 +56,12 @@ The usual advice is *“switch to an X11 session”* or *“use another distro.�
 
 - ❌ **ibus** — does not deliver Hangul to apps on COSMIC (shipped version too old)
 - ✅ **fcitx5 5.1.12** — connects to COSMIC’s Wayland input-method → **Hangul composes**
+
+### Terminal & launcher: I went further — patched the source
+
+fcitx5 alone still couldn't type Korean in the **terminal (cosmic-term)** or **launcher** — their shipped binaries predated IME support. COSMIC is open source, so I **pulled the source and rebuilt cosmic-term and cosmic-launcher** with IME enabled.
+
+Verified: text typed into the terminal lands as the bytes `안녕` (UTF-8 `ec95 88 eb 85 95`), and the launcher search box composes `안녕` too. **"Korean doesn't work in COSMIC's terminal/launcher" is no longer true.**
 
 ---
 
