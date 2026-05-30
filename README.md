@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="OS.jpg" alt="Cosmic OS" width="720">
-
 # Cosmic OS · 한글판
 
 ### "COSMIC 에선 한글 안 된다" 길래 — **OS 소스코드를 직접 뜯어고쳐서 되게 만들었습니다.**

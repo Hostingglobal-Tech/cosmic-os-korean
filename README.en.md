@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="OS.jpg" alt="Cosmic OS" width="720">
-
 # Cosmic OS · Korean Edition
 
 ### They said "Korean can't work on COSMIC." So I **patched the OS's source code** to make it work.
